@@ -15,7 +15,7 @@ eval $(aws ecr get-login --no-include-email)
 
 cd ${DOCKER}
 
-docker built -t "${SERVICE}:${BUILD_NUMBER}"
+docker built . -t "${SERVICE}:${BUILD_NUMBER}"
 docker image ls
 
 echo "docker push ${SERVICE}:${BUILD_NUMBER}"
