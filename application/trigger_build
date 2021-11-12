@@ -15,20 +15,15 @@ eval $(aws ecr get-login --no-include-email)
 
 cd ${DOCKER}
 
-
 ECR_URI=$(aws ecr describe-repositories \
   --repository-names ${ECR_REPO} \
  | jq .repositories[].repositoryUri \
  | tr -d '"')
 
-aws ecr describe-repositories \
-  --repository-names ${ECR_REPO} \
- | jq .repositories[].repositoryUri 
-
-echo "${ECR_REPO}"
-
+docker images ls
 docker build . -t "${SERVICE}:${BUILD_NUMBER}"
-echo "docker push ${ECR_URI}/${SERVICE}:${BUILD_NUMBER}"
+docker push ${ECR_URI}/${SERVICE}:${BUILD_NUMBER}
+
 
 # sed -e "s;%BUILD_NUMBER%;${BUILD_NUMBER};g" \
 #   -e "s;%ECR_URI%;${ECR_URI};g" taskdef.json > ${NAME}-v_${BUILD_NUMBER}.json
