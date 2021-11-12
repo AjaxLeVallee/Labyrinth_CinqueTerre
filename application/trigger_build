@@ -1,1 +1,14 @@
-banner Hello World, is Triggering
+banner Starting Labrinth...
+
+AWS_DEFAULT_REGION=us-east-1
+AWS_DEFAULT_OUTPUT=json
+TF_DIR="./infra"
+DOCKER="./docker"
+
+
+ECR_REPO="221736926476.dkr.ecr.us-east-1.amazonaws.com/labyrinth"
+echo "${AWS_ACCESS_KEY_ID}"
+echo "${AWS_SECRET_ACCESS_KEY}"
+echo "${AWS_DEFAULT_REGION}"
+echo "${AWS_DEFAULT_OUTPUT}"
+
