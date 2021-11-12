@@ -9,7 +9,7 @@ DOCKER="./docker"
 
 ECR_REPO="221736926476.dkr.ecr.us-east-1.amazonaws.com/labyrinth"
 CLUSTER=Lab-cluser
-SERVICE_NAME=Lab-API
+SERVICE=Lab-API
 
 eval $(aws ecr get-login --no-include-email)
 
