@@ -7,7 +7,7 @@ TF_DIR="./infra"
 DOCKER="./docker"
 
 
-ECR_REPO="221736926476.dkr.ecr.us-east-1.amazonaws.com/labyrinth"
+ECR_REPO="labyrinth"
 CLUSTER=Lab-cluser
 SERVICE=lab-api
 
@@ -15,13 +15,13 @@ eval $(aws ecr get-login --no-include-email)
 
 cd ${DOCKER}
 
-docker build . -t "${SERVICE}:${BUILD_NUMBER}"
 
 ECR_URI=$(aws ecr describe-repositories \
   --repository-names ${ECR_REPO} \
  | jq .repositories[].repositoryUri \
  | tr -d '"')
 
+docker build . -t "${SERVICE}:${BUILD_NUMBER}"
 echo "docker push ${ECR_URI}/${SERVICE}:${BUILD_NUMBER}"
 
 # sed -e "s;%BUILD_NUMBER%;${BUILD_NUMBER};g" \
