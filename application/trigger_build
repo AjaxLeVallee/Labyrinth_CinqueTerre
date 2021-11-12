@@ -21,7 +21,7 @@ ECR_URI=$(aws ecr describe-repositories \
  | tr -d '"')
 
 docker images ls
-docker build . -t "${SERVICE}:${BUILD_NUMBER}"
+docker build . -t "${ECR_URI}/${SERVICE}:${BUILD_NUMBER}"
 docker push ${ECR_URI}/${SERVICE}:${BUILD_NUMBER}
 
 
