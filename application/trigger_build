@@ -7,8 +7,6 @@ DOCKER="./docker"
 
 
 ECR_REPO="221736926476.dkr.ecr.us-east-1.amazonaws.com/labyrinth"
-echo "${AWS_ACCESS_KEY_ID}"
-echo "${AWS_SECRET_ACCESS_KEY}"
-echo "${AWS_DEFAULT_REGION}"
-echo "${AWS_DEFAULT_OUTPUT}"
 
+
+aws ecr describe-repositories
