@@ -1,24 +1,26 @@
 pipeline {
     agent any
+    environment {
+       AWS_DEFAULT_REGION=us-east-1
+       AWS_DEFAULT_OUTPUT=json
+       ECR_REPO="labyrinth"
+       CLUSTER=Lab-cluser
+       SERVICE=lab-api
+       }
     stages {
-        stage('Env Setup') {
+        stage('Env Setup Complete') {
             steps {
-                sh '''
-                    banner 'banner Starting Labrinth...'
-                    export AWS_DEFAULT_REGION=us-east-1
-		    export AWS_DEFAULT_OUTPUT=json
-		    export ECR_REPO="labyrinth"
-		    export CLUSTER=Lab-cluser
-		    export SERVICE=lab-api
-                '''
+                banner 'banner Starting Labrinth...'
             }
         }
 	stage('Build Image') {
 	    steps {
-	    sh '''
-		eval $(aws ecr get-login --no-include-email)
-	        echo "${ECR_REPO}"
-	    '''
+		# eval $(aws ecr get-login --no-include-email)
+	        echo env.ECR_REPO
+                ECR_URI=$(aws ecr describe-repositories \
+                  --repository-names env.ECR_REPO \
+                 | jq .repositories[].repositoryUri \
+                 | tr -d '"')
 	    }
 	}
     }
