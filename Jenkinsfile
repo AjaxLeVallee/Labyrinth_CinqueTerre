@@ -23,8 +23,8 @@ pipeline {
 	    steps {
 	        dir("application/docker") {
 	            sh "aws ecr get-login --no-include-email"
-                    sh "docker build . -t ${env.ECR_URI}:${env.BUILD_NUMBER}"
-                    sh "docker push ${env.ECR_URI}:${env.BUILD_NUMBER}"
+                    sh "docker build . -t '${env.ECR_URI}:${env.BUILD_NUMBER}'"
+                    sh "docker push '${env.ECR_URI}:${env.BUILD_NUMBER}'"
 		}
 	    }
 	}
