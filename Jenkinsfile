@@ -20,7 +20,7 @@ pipeline {
         }
 	stage('Build Image') {
 	    steps {
-                env.ECR_URI = sh(script:"aws ecr describe-repositories --repository-names ${env.ECR_REPO} | jq '.repositories[].repositoryUri' | tr -d \" ", returnStdout: true).trim()
+                ECR_URI = sh(script:"aws ecr describe-repositories --repository-names ${env.ECR_REPO} | jq '.repositories[].repositoryUri' | tr -d \" ", returnStdout: true).trim()
 	        sh 'aws ecr get-login --no-include-email'
                 }
 	}
