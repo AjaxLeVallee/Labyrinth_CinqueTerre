@@ -22,7 +22,7 @@ pipeline {
 	    steps {
 	        script {
 	        sh 'aws ecr get-login --no-include-email'
-		echo env.ECR_REPO
+		echo "${env.ECR_REPO}"
                 // sh 'aws ecr describe-repositories --repository-names ${env.ECR_REPO} | jq ".repositories[].repositoryUri" | tr -d "\"" '
                 }
 	    }
