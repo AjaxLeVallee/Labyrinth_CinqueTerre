@@ -19,8 +19,6 @@ pipeline {
             }
         }
 	stage('Build Image') {
-	    environment {
-	    }
 	    steps {
 	        sh 'aws ecr get-login --no-include-email'
                 }
