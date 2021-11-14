@@ -17,8 +17,6 @@ pipeline {
         }
 	stage('Build Image') {
 	    steps {
-	        sh 'aws --profile Lab ecr get-login --no-include-email'
-		sh 'docker login'
 		sh 'aws configure'
                 }
 	}
