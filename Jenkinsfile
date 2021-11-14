@@ -18,7 +18,7 @@ pipeline {
 		    sh 'echo "export AWS_SECRET_ACCESS_KEY=env.AWS_SECRET_ACCESS_KEY" >> aws_src'
 		    sh 'echo "export AWS_DEFAULT_REGION=env.AWS_DEFAULT_REGION" >> aws_src'
 		    sh 'echo "export AWS_DEFAULT_OUTPUT=env.AWS_DEFAULT_OUTPUT" >> aws_src'
-	            sh 'source aws_src'
+	            sh 'cat aws_src'
                 }
             }
         }
