@@ -26,7 +26,9 @@ pipeline {
                     sh "docker push ${env.ECR_URI}:${env.BUILD_NUMBER}"
 		}
 	    }
-	stage("Start Deployment")
+	stage("Start Deployment") {
+            echo "HI"
+	    }
 	}
     }
 }
