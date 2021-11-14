@@ -27,7 +27,8 @@ pipeline {
                 ECR_URI = sh(script:'aws ecr describe-repositories --repository-names env.ECR_REPO | jq ".repositories[].repositoryUri" | tr -d \" ', returnStdout: true).trim()
 	    }
 	    steps {
-	        sh 'source aws_src ; aws ecr get-login --no-include-email'
+		sh 'source src_aws'
+	        sh 'aws ecr get-login --no-include-email'
 		sh 'docker login'
 		sh 'aws configure'
                 }
