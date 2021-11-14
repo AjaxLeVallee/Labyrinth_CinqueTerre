@@ -12,20 +12,9 @@ pipeline {
         stage('Env Setup Complete') {
             steps {
 	        script {
-                    banner 'banner Starting Labrinth...'
+                    sh 'banner "banner Starting Labrinth..."
                 }
             }
         }
-	stage('Build Image') {
-	    steps {
-	        script {
-		sh 'aws env.AWS_DEFAULT_REGION env.AWS_DEFAULT_REGION ecr get-login --no-include-email'
-	        sh 'echo env.ECR_REPO'
-		sh 'echo env.ECR_URI'
-		sh 'ls -lash'
-		}
-
-	    }
-	}
     }
 }
