@@ -22,8 +22,6 @@ pipeline {
 		sh 'aws configure'
                 ECR_URI = sh(script:'aws --profile Lab ecr describe-repositories --repository-names env.ECR_REPO | jq ".repositories[].repositoryUri" | tr -d \" ', returnStdout: true).trim()
                 }
-
-	    }
 	}
     }
 }
