@@ -20,7 +20,7 @@ pipeline {
         }
 	stage('Build Image') {
 	    steps {
-	        script {
+	        environment {
                 env.ECR_URI = sh (script: "aws ecr describe-repositories --repository-names ${env.ECR_REPO} | jq '.repositories[].repositoryUri' | tr -d '"' " , returnStdout: true).trim()
                 }
 
