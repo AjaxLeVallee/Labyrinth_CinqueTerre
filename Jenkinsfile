@@ -17,7 +17,7 @@ pipeline {
 	    steps {
 		aws ecr get-login --no-include-email
 	        echo env.ECR_REPO
-                EVR_URI = sh(returnStdout: true, script: 'aws ecr describe-repositories --repository-names env.ECR_REPO | jq .repositories[].repositoryUri).trim()
+                EVR_URI = sh(returnStdout: true, script: 'aws ecr describe-repositories --repository-names env.ECR_REPO | jq .repositories[].repositoryUri)
 		 echo env.ECR_URI
                 docker images ls
                 docker build . -t env.ECR_URI:env.BUILD_NUMBER
