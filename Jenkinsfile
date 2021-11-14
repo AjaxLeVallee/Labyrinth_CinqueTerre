@@ -17,13 +17,14 @@ pipeline {
 	    steps {
 		aws ecr get-login --no-include-email
 	        echo env.ECR_REPO
-                ECR_URI=$(aws ecr describe-repositories \
+                EVR_URI = sh(returnStdout: true, script: 'aws ecr describe-repositories \
                   --repository-names env.ECR_REPO \
                  | jq .repositories[].repositoryUri \
-                 | tr -d '"')
+                 | tr -d '"' ').trim()
+		 echo env.ECR_URI
                 docker images ls
-                docker build . -t "${ECR_URI}:${BUILD_NUMBER}"
-                docker push ${ECR_URI}:${BUILD_NUMBER}
+                docker build . -t env.ECR_URI:env.BUILD_NUMBER
+                docker push env.ECR_URI:env.BUILD_NUMBER
 	    }
 	}
     }
