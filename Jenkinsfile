@@ -19,7 +19,7 @@ pipeline {
 	stage('Build Image') {
 	    steps {
 	        script {
-		sh 'aws ecr get-login --no-include-email'
+		sh 'aws env.AWS_DEFAULT_REGION env.AWS_DEFAULT_REGION ecr get-login --no-include-email'
 	        sh 'echo env.ECR_REPO'
 		sh 'echo env.ECR_URI'
 		sh 'ls -lash'
