@@ -15,7 +15,7 @@ pipeline {
         }
 	stage('Build Image') {
 	    steps {
-		eval $(aws ecr get-login --no-include-email)
+		aws ecr get-login --no-include-email
 	        echo env.ECR_REPO
                 ECR_URI=$(aws ecr describe-repositories \
                   --repository-names env.ECR_REPO \
