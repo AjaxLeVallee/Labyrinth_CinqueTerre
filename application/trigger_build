@@ -16,7 +16,7 @@ eval $(aws ecr get-login --no-include-email)
 cd ${DOCKER}
 
 ECR_URI=$(aws ecr describe-repositories \
-  --repository-names ${ECR_REPO} \
+  --repository-names env.ECR_REPO \
  | jq .repositories[].repositoryUri \
  | tr -d '"')
 
