@@ -19,7 +19,7 @@ pipeline {
 	    steps {
 		withAWS(credentials: 'LAB', region: 'us-east-1') {
 		    sh 'aws ecr get-login --no-include-email'
-                    EVR_URI = sh(returnStdout: true, script: 'aws ecr describe-repositories --repository-names env.ECR_REPO | jq .repositories[].repositoryUri | tr -d \" ' )
+                    sh 'aws ecr describe-repositories --repository-names env.ECR_REPO | jq .repositories[].repositoryUri | tr -d \" > env_file'
                 }
 
 	    }
