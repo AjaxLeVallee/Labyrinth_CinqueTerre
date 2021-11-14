@@ -11,7 +11,7 @@ pipeline {
         stage('Env Setup Complete') {
             steps {
 	        script {
-                    sh 'banner "banner Starting Labrinth..."
+                    sh 'banner "banner Starting Labrinth..." '
                 }
             }
         }
