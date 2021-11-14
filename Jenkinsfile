@@ -6,7 +6,7 @@ pipeline {
        AWS_ACCESS_KEY_ID=credentials('AWS_ACCESS_KEY_ID')
        AWS_SECRET_ACCESS_KEY=credentials('AWS_SECRET_ACCESS_KEY')
        ECR_REPO="labyrinth"
-       ECR_URI="https://221736926476.dkr.ecr.us-east-1.amazonaws.com/${env.ECR_REPO}"
+       ECR_URI="221736926476.dkr.ecr.us-east-1.amazonaws.com/${env.ECR_REPO}"
        CLUSTER="Lab-cluser"
        SERVICE="lab-api"
        }
