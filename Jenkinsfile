@@ -28,9 +28,9 @@ pipeline {
 	}
 	stage('Trigger Build') {
 	    steps {
-		sh "ls -lash"
 		sh "cat ECS.json"
                 sh 'sed -e "s;%BUILD_NUMBER%;${envBUILD_NUMBER};g" -e "s;%ECR_URI%;${env.ECR_URI};g" ECS.json > ${env.ECR_REPO}-v_${env.BUILD_NUMBER}.json'
+		sh "ls -lash"
 	        sh "echo HI"
 	    }
 	}
