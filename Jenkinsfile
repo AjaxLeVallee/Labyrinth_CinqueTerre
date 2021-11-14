@@ -20,7 +20,7 @@ pipeline {
 		withAWS(credentials: 'LAB', region: 'us-east-1') {
 		    sh 'aws ecr get-login --no-include-email'
 		    sh 'docker login'
-                    ECR_URI = sh(script:'aws ecr describe-repositories --repository-names env.ECR_REPO | jq ".repositories[].repositoryUri" | tr -d \" ', returnStdout: true).trim()
+                    def ECR_URI = sh(script:'aws ecr describe-repositories --repository-names env.ECR_REPO | jq ".repositories[].repositoryUri" | tr -d \" ', returnStdout: true).trim()
                 }
 
 	    }
