@@ -21,6 +21,9 @@ pipeline {
                   --repository-names env.ECR_REPO \
                  | jq .repositories[].repositoryUri \
                  | tr -d '"')
+                docker images ls
+                docker build . -t "${ECR_URI}:${BUILD_NUMBER}"
+                docker push ${ECR_URI}:${BUILD_NUMBER}
 	    }
 	}
     }
