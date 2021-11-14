@@ -19,9 +19,8 @@ pipeline {
 		aws ecr get-login --no-include-email
 	        echo env.ECR_REPO
 		echo env.ECR_URI
-                docker images ls
-                docker build . -t env.ECR_URI:env.BUILD_NUMBER
-                docker push env.ECR_URI:env.BUILD_NUMBER
+		ls -lash
+
 	    }
 	}
     }
