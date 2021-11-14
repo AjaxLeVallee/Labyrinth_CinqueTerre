@@ -1,5 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
+**/backup/*
 
 # .tfstate files
 *.tfstate
@@ -31,3 +32,6 @@ override.tf.json
 *.tfvars
 *.tfvars.*
 *.terraform.lock.hcl
+
+*backup/*/*
+
