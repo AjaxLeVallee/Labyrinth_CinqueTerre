@@ -20,11 +20,11 @@ pipeline {
         }
 	stage('Build Image') {
 	    steps {
-	        environment {
-                env.ECR_URI = sh(script: "aws ecr describe-repositories --repository-names 'https://221736926476.dkr.ecr.us-east-1.amazonaws.com' | jq '.repositories[].repositoryUri' | tr -d '"' " , returnStdout: true).trim()
-                }
-
 	        sh 'aws ecr get-login --no-include-email'
+		sh 'ls -lash'
+		sh 'cd application/docker/'
+                sh 'docker build . -t ${env.ECR_URI}:${env.BUILD_NUMBER}'
+                sh 'docker push ${env.ECR_URI}:${env.BUILD_NUMBER}'
 	    }
 	}
     }
