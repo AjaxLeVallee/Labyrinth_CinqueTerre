@@ -9,6 +9,7 @@ pipeline {
        ECR_URI="221736926476.dkr.ecr.us-east-1.amazonaws.com/${env.ECR_REPO}"
        CLUSTER="Lab-cluser"
        SERVICE="lab-api"
+       DESIRED_COUNT="1"
        }
     stages {
         stage('Env Setup Complete') {
@@ -41,5 +42,17 @@ pipeline {
 		}
 	    }
 	}
+	stage('Update'){
+	    when {
+	        expression {
+		    return params.UPDATE == true
+		}
+	    }
+	    steps {
+	        dir('application/') {
+	            sh "aws ecs update-service --cluster \"${env.CLUSTER}\" --service \"${env.SERVICE}\" --task-definition \"${env.SERVICE}:${env.BUILD_NUMBER}\" --desired-count \"${env.DESIRED_COUNT}\"
+	        }
+	}
+    }
     }
 }
