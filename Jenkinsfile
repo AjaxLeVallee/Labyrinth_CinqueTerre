@@ -50,7 +50,7 @@ pipeline {
 	    }
 	    steps {
 	        dir('application/') {
-	            sh "aws ecs update-service --cluster \"${env.CLUSTER}\" --service \"${env.SERVICE}\" --task-definition \"${env.SERVICE}:${env.BUILD_NUMBER}\" --desired-count \"${env.DESIRED_COUNT}\"
+	            sh "aws ecs update-service --cluster \"${env.CLUSTER}\" --service \"${env.SERVICE}\" --task-definition \"${env.SERVICE}:${env.BUILD_NUMBER}\" --desired-count \"${env.DESIRED_COUNT}\""
 	        }
 	}
     }
