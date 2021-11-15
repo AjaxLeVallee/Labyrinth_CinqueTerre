@@ -19,7 +19,7 @@ pipeline {
 	stage('Build Image') {
 	    steps {
 	        dir('application/docker') {
-		    sh 'env'
+		    sh 'source /var/lib/jenkins/src_aws'
 	            sh "aws ecr get-login --no-include-email"
                     sh "docker build . -t '${env.ECR_URI}:${env.BUILD_NUMBER}'"
                     sh "docker push '${env.ECR_URI}:${env.BUILD_NUMBER}'"
@@ -28,6 +28,7 @@ pipeline {
 	}
 	stage('Trigger Build') {
 	    steps {
+		sh 'source /var/lib/jenkins/src_aws'
 		sh "cat ECS.json"
                 sh 'sed -e "s;%BUILD_NUMBER%;${envBUILD_NUMBER};g" -e "s;%ECR_URI%;${env.ECR_URI};g" ECS.json > ${env.ECR_REPO}-v_${env.BUILD_NUMBER}.json'
 		sh "ls -lash"
