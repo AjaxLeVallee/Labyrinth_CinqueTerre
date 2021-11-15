@@ -13,7 +13,7 @@ pipeline {
         stage('Env Setup Complete') {
             steps {
 	        script {
-		    echo Start
+		    echo 'Start'
                 }
             }
         }
