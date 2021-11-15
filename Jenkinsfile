@@ -11,6 +11,9 @@ pipeline {
        SERVICE="lab-api"
        DESIRED_COUNT="1"
        }
+    parameters{
+        booleanParam(name: 'UPDATE', defaultValue: false, description: 'Update build')
+        }
     stages {
         stage('Env Setup Complete') {
             steps {
