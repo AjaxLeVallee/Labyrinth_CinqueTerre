@@ -12,10 +12,7 @@ sudo yum upgrade
 # Bring over files needed
 
 
-
-
-
-sudo yum install yum-utils git jenkins java-1.8.0-openjdk-devel -y
+sudo yum install yum-utils jq git jenkins java-1.8.0-openjdk-devel -y
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
 sudo yum -y install terraform
 
@@ -25,7 +22,7 @@ sudo systemctl status jenkins
 
 
 sudo yum install docker -y
-sudo  groupadd docker
+sudo groupadd docker
 sudo usermod -aG docker ec2-user
 sudo systemctl start docker
 sudo systemctl enable docker
