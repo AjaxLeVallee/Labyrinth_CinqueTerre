@@ -27,4 +27,6 @@ sudo systemctl status jenkins
 sudo yum install docker -y
 sudo  groupadd docker
 sudo usermod -aG docker ec2-user
-chmod 777 /var/run/docker.sock
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo chmod 777 /var/run/docker.sock

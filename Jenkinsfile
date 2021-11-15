@@ -23,6 +23,7 @@ pipeline {
 	    steps {
 	        dir('application/docker') {
 	            sh "aws ecr get-login --no-include-email"
+		    sh "aws ecr get-login-password  | docker login --username AWS --password-stdin ${env.ECR_URI}"
                     sh "docker build . -t '${env.ECR_URI}:${env.BUILD_NUMBER}'"
                     sh "docker push '${env.ECR_URI}:${env.BUILD_NUMBER}'"
 	        }
