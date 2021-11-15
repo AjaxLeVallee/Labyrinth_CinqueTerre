@@ -33,7 +33,7 @@ pipeline {
 	    steps {
 	        dir('application/') {
     		    sh "cat ECS.json"
-                    sh 'sed -e "s;%BUILD_NUMBER%;${envBUILD_NUMBER};g" -e "s;%ECR_URI%;${env.ECR_URI};g" ECS.json > ${env.ECR_REPO}-v_${env.BUILD_NUMBER}.json'
+                    sh 'sed -e "s;%BUILD_NUMBER%;${env.BUILD_NUMBER};g" -e "s;%ECR_URI%;${env.ECR_URI};g" ECS.json > "${env.ECR_REPO}-v_${env.BUILD_NUMBER}.json"'
 		    sh "cat ECS.json"
 		}
 	    }
