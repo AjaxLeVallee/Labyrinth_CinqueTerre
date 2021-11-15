@@ -2,7 +2,7 @@
     "family": "lab-api",
     "containerDefinitions": [
         {
-            "image": "%REPO_URI%:v_%BUILD_NUMBER%",
+            "image": "%ECR_URI%:v_%BUILD_NUMBER%",
             "name": "lab-api",
             "cpu": 10,
             "memory": 256,
