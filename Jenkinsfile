@@ -35,6 +35,9 @@ pipeline {
     		    sh "cat ECS.json"
                     sh 'sed -e "s;%BUILD_NUMBER%;${env.BUILD_NUMBER};g" -e "s;%ECR_URI%;${env.ECR_URI};g" ECS.json > "${env.ECR_REPO}-v_${env.BUILD_NUMBER}.json"'
 		    sh "cat ECS.json"
+		    sh "aws ecs register-task-definition --family ${env.SERVICE}  --cli-input-json file://${env.ECR_REPO}-v_${BUILD_NUMBER}.json"
+		    sh "aws ecs describe-services --services ${env.SERVICE} --cluster ${env.CLUSTER} | jq .failures[] >> FAILS.log"
+		    sh "aws ecs describe-task-definition --task-definition ${NAME} | jq .taskDefinition.revision"
 		}
 	    }
 	}
