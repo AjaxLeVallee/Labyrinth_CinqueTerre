@@ -13,15 +13,16 @@ pipeline {
             steps {
 	        script {
 		    sh 'source /var/lib/jenkins/src_aws'
-                    sh 'banner "banner Starting Labrinth..." '
                 }
             }
         }
 	stage('Build Image') {
+	    dir('application/docker') {
 	    steps {
 	        sh "aws ecr get-login --no-include-email"
                 sh "docker build . -t '${env.ECR_URI}:${env.BUILD_NUMBER}'"
                 sh "docker push '${env.ECR_URI}:${env.BUILD_NUMBER}'"
+	    }
 	    }
 	}
 	stage('Trigger Build') {
