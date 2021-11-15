@@ -17,12 +17,12 @@ pipeline {
             }
         }
 	stage('Build Image') {
-	    dir('application/docker') {
 	    steps {
-	        sh "aws ecr get-login --no-include-email"
-                sh "docker build . -t '${env.ECR_URI}:${env.BUILD_NUMBER}'"
-                sh "docker push '${env.ECR_URI}:${env.BUILD_NUMBER}'"
-	    }
+	        dir('application/docker') {
+	            sh "aws ecr get-login --no-include-email"
+                    sh "docker build . -t '${env.ECR_URI}:${env.BUILD_NUMBER}'"
+                    sh "docker push '${env.ECR_URI}:${env.BUILD_NUMBER}'"
+	        }
 	    }
 	}
 	stage('Trigger Build') {
